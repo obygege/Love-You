@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anniversary Roby & Emil</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Short+Stack&amp;family=Homemade+Apple&amp;display=swap'>
+  <link rel="stylesheet" href="new assets/style.css">
+</head>
+<body>
+  <!-- Kontainer untuk konten yang akan berubah -->
+  <div id="content" class="paper image">
+    <!-- Konten awal akan dimuat di sini -->
+  </div>
+
+  <!-- Tombol Next -->
+  <div style="text-align: center; margin-top: 20px;">
+    <button id="nextBtn">Next</button>
+  </div>
+
+  <!-- Animasi gambar love besar -->
+  <div id="loveAnimation" style="display: none;">
+    <img src="new assets/images/12.gif" alt="Love Animation"/>
+  </div>
+
+  <script src="new assets/script.js"></script>
+  <script>
+    // Data teks dan gambar yang akan ditampilkan
+    const contentData = [
+      {
+        text1: "Coba Ditekan Tombolnya Sayang",
+        text2: "",
+        img: ""
+      },
+      {
+        text1: "Terima Kasih",
+        text2: "Telah Menerimaku Sepenuhnya Sayang 😍",
+        img: "new assets/images/1.jpeg"
+      },
+      {
+        text1: "",
+        text2: "",
+        img: "new assets/images/2.jpeg"
+      },
+      {
+        text1: "Wajahmu Cantik",
+        text2: "Seperti Bidadari Sayang ❤️",
+        img: "new assets/images/3.jpeg"
+      },
+      {
+        text1: "Kamu adalah orang yang membuatku",
+        text2: "jatuh cinta sedalam ini Syg 😍",
+        img: ""
+      },
+      {
+        text1: "Selamat Anniversary",
+        text2: "Ke 1 Tahun Sayangg ❤️",
+        img: ""
+      },
+    ];
+
+    let currentIndex = 0; // Indeks konten saat ini
+
+    // Fungsi untuk memperbarui konten
+    function updateContent() {
+      const contentDiv = document.getElementById("content");
+      const currentData = contentData[currentIndex];
+
+      // Cek jika konten adalah animasi love
+      if (currentIndex === contentData.length) {
+        document.getElementById("loveAnimation").style.display = "flex"; // Gunakan flex untuk penempatan gambar
+        contentDiv.innerHTML = "";
+        return;
+      }
+
+      contentDiv.innerHTML = `
+        <p>${currentData.text1}</p>
+        <p>${currentData.text2}</p>
+        ${currentData.img ? `<img src="${currentData.img}" alt="Gambar"/>` : ""}
+      `;
+
+      // Increment index, reset jika sudah mencapai akhir array
+      currentIndex = (currentIndex + 1) % (contentData.length + 1); // Tambahkan 1 untuk animasi love
+    }
+
+    // Event listener untuk tombol Next
+    document.getElementById("nextBtn").addEventListener("click", updateContent);
+
+    // Memainkan musik saat halaman dimuat
+    window.addEventListener("load", function() {
+      var audio = new Audio('new assets/music/Kris Dayanti - Mencintaimu (remake version).mp3'); 
+      audio.play();
+    });
+
+    // Muat konten awal
+    updateContent();
+  </script>
+</body>
+</html>
